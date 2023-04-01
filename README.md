@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="https://bernardocostaa.github.io/Jogo-da-velha/">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://bernardocostaa.github.io/To-Do-List/">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
 
@@ -24,7 +24,7 @@ Esse projeto está sendo desenvolvido com as seguintes tecnologias:
 
 ## 🚧 Projeto:
 
-Link do Projeto: [To Do List](https://bernardocostaa.github.io/Jogo-da-velha/)
+Link do Projeto: [To Do List](https://bernardocostaa.github.io/To-Do-List/)
 
 
 ## :memo: Licença
