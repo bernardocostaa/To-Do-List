@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <img alt="" src="https://raw.githubusercontent.com/bernardocostaa/Jogo-da-velha/main/post.jpg" width="100%">
+  <img alt="" src="https://raw.githubusercontent.com/bernardocostaa/To-Do-List/main/tamplete.jpg" width="100%">
 </p>
 
 <p align="center">
@@ -24,12 +24,12 @@ Esse projeto está sendo desenvolvido com as seguintes tecnologias:
 
 ## 🚧 Projeto:
 
-Link do Projeto: [Jogo da Velha](https://bernardocostaa.github.io/Jogo-da-velha/)
+Link do Projeto: [To Do List](https://bernardocostaa.github.io/Jogo-da-velha/)
 
 
 ## :memo: Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/bernardocostaa/Jogo-da-velha/blob/main/LICENSE) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/bernardocostaa/To-Do-List/blob/main/LICENSE) para mais detalhes.
 
 ---
 
