@@ -17,7 +17,8 @@ body{
   margin: auto 20px;
 }
 .area-to-list{
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
 }
 .header-to-list{
   display: flex;
@@ -70,7 +71,8 @@ body{
   border-radius: 0px 0px 8px 8px;
 }
 .caixa-list{
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   padding: 30px 25px;
   background: white;
