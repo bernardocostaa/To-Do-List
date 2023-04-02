@@ -120,3 +120,8 @@ body{
 .btn:hover{
   background: #fc7676;
 }
+
+
+.dia,.mes{
+  text-transform: capitalize;
+}
