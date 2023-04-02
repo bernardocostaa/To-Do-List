@@ -1,26 +1,26 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-ul{
+ul {
   list-style: none;
 }
-body{
-  background: linear-gradient(75.7deg, #6096EF 42.52%, #946AEE 100%);
+body {
+  background: linear-gradient(75.7deg, #6096ef 42.52%, #946aee 100%);
 }
-.container{
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   margin: auto 20px;
 }
-.area-to-list{
+.area-to-list {
   width: 100%;
   max-width: 800px;
 }
-.header-to-list{
+.header-to-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,52 +29,52 @@ body{
   border-radius: 8px 8px 0px 0px;
   padding: 15px 25px;
 }
-.area-data{
+.area-data {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.area-data h1{
+.area-data h1 {
   font-size: 4rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
-  color: #FAF527;
+  color: #faf527;
 }
-.mes{
+.mes {
   font-size: 1.4rem;
   margin-bottom: 4px;
   color: white;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
-.ano{
+.ano {
   font-size: 1rem;
   color: white;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
-.dia-to-list{
+.dia-to-list {
   width: 200px;
   text-align: end;
 }
-.dia{
+.dia {
   font-size: 1.4rem;
   margin-bottom: 4px;
   color: white;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
-.foto-perfil img{
+.foto-perfil img {
   display: block;
-    border-radius: 50%;
+  border-radius: 50%;
 }
-.conteudo-list{
+.conteudo-list {
   background: white;
   padding: 50px 40px;
   position: relative;
   border-radius: 0px 0px 8px 8px;
 }
-.caixa-list{
+.caixa-list {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
@@ -83,30 +83,30 @@ body{
   box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.3);
   border-radius: 8px;
 }
-.item-list{
+.item-list {
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
   align-items: center;
   position: relative;
 }
-.li-lista{
-  border: 2px solid #239EFE;
+.li-lista {
+  border: 2px solid #239efe;
   border-radius: 8px;
   padding: 6px 0;
   margin-bottom: 20px;
 }
-.item-list p{
+.item-list p {
   font-size: 1rem;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.btn{
+.btn {
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.125rem;
-  background: #FF6565;
+  background: #ff6565;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   outline: none;
@@ -118,12 +118,12 @@ body{
   top: -25px;
   margin: 0 auto;
 }
-.btn:hover{
+.btn:hover {
   background: #fc7676;
 }
 
-.item-list p::before{
-  content: '';
+.item-list p::before {
+  content: "";
   width: 8px;
   height: 4px;
   background: #fc7676;
@@ -133,7 +133,7 @@ body{
   left: 10px;
 }
 
-
-.dia,.mes{
+.dia,
+.mes {
   text-transform: capitalize;
 }
