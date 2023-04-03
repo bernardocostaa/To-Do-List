@@ -33,6 +33,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 200px;
 }
 .area-data h1 {
   font-size: 4rem;
@@ -118,7 +119,21 @@ body {
   top: -25px;
   margin: 0 auto;
 }
-.btn:hover {
+.btn-save{
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  background: #ff6565;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+}
+.btn:hover,.btn-save:hover {
   background: #fc7676;
 }
 
@@ -136,4 +151,48 @@ body {
 .dia,
 .mes {
   text-transform: capitalize;
+}
+
+.modal{
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal.ativo{
+  display: flex;
+}
+.form-modal{
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  border: 2px solid #fc7676;
+}
+.cont-form label{
+  display: block;
+  font-family: 'Poppins' ,sans-serif;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.cont-form input{
+  padding: 8px;
+  font-family: 'Poppins' ,sans-serif;
+  border-radius: 8px;
+  outline:0;
+  border: 2px solid rgb(129, 129, 129);
+  font-size: 1rem;;
+  margin-bottom: 10px;
+}
+.cont-form input:focus{
+ border:2px solid #239efe;
+}
+.cont-form input.ativo{
+ border:2px solid red;
 }
