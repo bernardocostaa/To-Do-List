@@ -19,55 +19,12 @@ function dataAtual() {
 
 dataAtual();
 
-function openModal() {
-  modal.classList.add("ativo");
-  outsideClick(() => {
-    modal.classList.remove("ativo");
-    inputAdd.value = ''
-    inputAdd.classList.remove('ativo')
-  });
+
+
+function getLocalStorage(){
+  return  JSON.parse(localStorage.getItem('bd_task')) ?? [] // ?? se for verdade faz o outro
+}
+function setLocalStorage(bdTask){
+  return  localStorage.setItem('bd_task',JSON.stringify(bdTask))
 }
 
-function outsideClick(callback) {
-  const html = document.documentElement;
-  html.addEventListener("click", handleClick);
-  function handleClick(event) {
-    if (event.target.classList[0] == "modal") {
-      html.removeEventListener("click", handleClick);
-      callback();
-    }
-  }
-}
-
-function loadItens() {
-  addTask();
-}
-
-btn.addEventListener("click", openModal);
-btnSave.addEventListener("click", (e) => {
-  e.preventDefault();
-  loadItens();
-});
-
-function addTask() {
-  const newTask = document.createElement("li");
-  const list = document.querySelector(".list-task");
-  if (inputAdd.value == "") {
-    inputAdd.classList.add("ativo");
-    return;
-  }
-  newTask.innerHTML = `<li class="li-lista">
-  <div class="item-list">
-  <p>${inputAdd.value}</p>
-  <div>
-  <a href=""><img src="img/editar.svg" data-edit="1" alt=""></a>
-  <a href=""><img src="img/excluir.svg" data-exclu="1" alt=""></a>
-  <a href=""><img src="img/finalizar.svg" data-fina="1" alt=""></a>
-  </div>
-  </div>
-  </li>`;
-  list.append(newTask);
-  modal.classList.remove("ativo");
-  inputAdd.value = ''
-  inputAdd.classList.remove('ativo')
-}
