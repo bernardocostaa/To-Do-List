@@ -45,7 +45,6 @@ function updateList(index, list) {
   if (editarTask) {
     editarTask.closest(".li-lista").getElementsByTagName("p")[0].innerHTML = inputAdd.value;
   }
-  console.log(editarTask);
   dadosTask[index] = list;
   setLocalStorage(dadosTask);
 }
@@ -157,7 +156,7 @@ function outsideClick(callback) {
 }
 function taskFinalizada(e, index, finaliza = true) {
   const currentTask = e.currentTarget.closest(".li-lista");
-  const btnEditi = currentTask.querySelector("[data-controle]");
+  const btnEditi = currentTask.querySelector(`[data-controle="editar-${index}"]`);
   const textoMsg = currentTask.querySelector("p").innerText;
   currentTask.setAttribute("data-status", finaliza);
   statusTask = {
@@ -167,7 +166,9 @@ function taskFinalizada(e, index, finaliza = true) {
   updateList(index, statusTask);
   if (currentTask.getAttribute("data-status") == "true") {
     currentTask.classList.add("finalizado");
-    btnEditi.remove();
+    if(btnEditi){
+      btnEditi.remove();
+    }
   }
 }
 
