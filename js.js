@@ -66,7 +66,7 @@ function saveDados() {
     modal.removeAttribute("texto");
     modal.removeAttribute("index");
     modal.classList.remove("ativo");
-    updateTabela();
+    updateTabela()
     return;
   }
   if (inputAdd.value == "") {
