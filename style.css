@@ -201,3 +201,9 @@ body {
   border: none;
   cursor: pointer;
 }
+
+.li-lista.finalizado{
+  background: rgb(100, 226, 100);
+  opacity: .5;
+  border: none;
+}

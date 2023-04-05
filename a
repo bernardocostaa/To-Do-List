@@ -8,11 +8,7 @@ const btn = document.querySelector("[data-btn]");
 const btnSave = document.querySelector("[data-salvar]");
 const modal = document.querySelector(".modal");
 const inputAdd = document.getElementById("addInput");
-
-let statusTask = {
-  msg:'',
-  finaliza:false
-}
+var editingTask = null
 
 function dataAtual() {
   const dataAtual = new Date();
@@ -32,14 +28,19 @@ function setLocalStorage(bdTask) {
 }
 
 function deleteTask(index) {
-  const dadosTask = getLocalStorage();
-  dadosTask.splice(index, 1);
-  setLocalStorage(dadosTask);
+  let dadosTask = getLocalStorage();
+  console.log(dadosTask[index]);
+  // dadosTask = dadosTask.splice(index, 1);
+  // console.log(dadosTask);
+  // setLocalStorage(dadosTask);
 }
 
-function updateList(index, list) {
+function updateList(index) {
   const dadosTask = readList();
-  dadosTask[index] = list;
+  const taskObj = dadosTask[index]
+  taskObj.msg = inputAdd.value
+  editingTask.closest('.li-lista').getElementsByTagName('p')[0].innerHTML = inputAdd.value
+  dadosTask[index] = taskObj;
   setLocalStorage(dadosTask);
 }
 
@@ -51,28 +52,38 @@ function creatList(listTask) {
   const criarDados = getLocalStorage();
   criarDados.push(listTask);
   setLocalStorage(criarDados);
+  updateTabela();
 }
 
 function saveDados() {
+  if(modal.hasAttribute('action') && modal.getAttribute('action') == 'editar'){
+    updateList(modal.getAttribute('index'))
+    modal.removeAttribute('action')
+    modal.removeAttribute('texto')
+    modal.removeAttribute('index')
+    modal.classList.remove('ativo')
+    return;
+  }
   if (inputAdd.value == "") {
     inputAdd.classList.add("ativo");
     return;
   }
-   statusTask ={
-    msg:inputAdd.value,
-    finaliza:false
-   }
-
-  creatList(statusTask);
-  updateTabela();
+  const taskTexto = {
+    msg: inputAdd.value,
+  };
+  const newIndex = document.querySelectorAll('.li-lista').length
+  addTask(taskTexto,newIndex)
+  // updateList(newIndex,taskTexto)
+  creatList(taskTexto);
+  // updateTabela();
 }
 
 function addTask(texto, index) {
   const newTask = document.createElement("li");
   const list = document.querySelector(".list-task");
-  newTask.innerHTML = `<li data-status="${texto.finaliza}" class="li-lista">
+  newTask.innerHTML = `<li class="li-lista">
   <div class="item-list">
-  <p>${texto.msg}</p>
+  <p data-texto>${texto.msg}</p>
   <div class="controles">
   <button><img src="img/editar.svg" alt="" data-controle="editar-${index}"></button >
   <button><img src="img/excluir.svg" alt="" data-controle="exluir-${index}"></button >
@@ -92,33 +103,29 @@ function clearTable() {
 }
 
 function updateTabela() {
-  const dadosTask = readList();
-  clearTable();
-  dadosTask.forEach(addTask);
   const controles = document.querySelectorAll(".controles");
   controles.forEach((btn) => {
     btn.addEventListener("click", btnAcation);
   });
-  const finaliza = document.querySelectorAll('.li-lista')
-  finaliza.forEach((item)=>{
-   const btnEditi = item.querySelector('[data-controle]')
-    const valdarTrue =  item.dataset.status == 'true'
-    if(valdarTrue){
-      item.classList.add('finalizado')
-      btnEditi.remove()
-    }
-  })
-
-
 }
 
-function openModal() {
+function openModal(action,index,textoTaskB) {
+  if(action == 'editar'){
+    modal.setAttribute('action',action)
+    modal.setAttribute('index', index)
+    modal.setAttribute('texto', textoTaskB)
+    inputAdd.value = textoTaskB
+  }else{
+    inputAdd.value = "";
+  }
   modal.classList.add("ativo");
   outsideClick(() => {
     modal.classList.remove("ativo");
+    modal.removeAttribute('action')
+    modal.removeAttribute('texto')
+    modal.removeAttribute('index')
   });
   inputAdd.classList.remove("ativo");
-  inputAdd.value = "";
 }
 
 function outsideClick(callback) {
@@ -131,37 +138,27 @@ function outsideClick(callback) {
     }
   }
 }
-function taskFinalizada(e,index,finaliza = true){
+function taskFinalizada(e){
   const currentTask = e.currentTarget.closest('.li-lista')
-  const textoMsg = currentTask.querySelector('p').innerText
-  currentTask.setAttribute('data-status',finaliza)
-  statusTask = {
-    msg:textoMsg,
-    finaliza
-  }
-  updateList(index,statusTask)
-  if(currentTask.getAttribute('data-status') == 'true'){
-    currentTask.classList.add('finalizado')
-  }
-}
-
-function editarTask(){
-  openModal()
+  currentTask.classList.add('finalizado')
+ 
 }
 
 function btnAcation(e) {
   const [action, index] = e.target.dataset.controle.split("-");
   if (action == "exluir") {
     deleteTask(index);
-    updateTabela();
+    e.target.closest('.li-lista').remove()
   } else if (action == "editar") {
-    editarTask()
+    const textoTaskB = e.target.closest('.li-lista').getElementsByTagName('p')[0].innerHTML
+    editingTask = e.target
+    openModal(action,index,textoTaskB)
   } else {
-    taskFinalizada(e,index)
+    taskFinalizada(e)
   }
 }
 
-updateTabela();
+// updateTabela();
 
 btn.addEventListener("click", openModal);
 
