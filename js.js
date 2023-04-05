@@ -9,10 +9,12 @@ const btnSave = document.querySelector("[data-salvar]");
 const modal = document.querySelector(".modal");
 const inputAdd = document.getElementById("addInput");
 
+let editarTask;
+
 let statusTask = {
-  msg:'',
-  finaliza:false
-}
+  msg: "",
+  finaliza: false,
+};
 
 function dataAtual() {
   const dataAtual = new Date();
@@ -39,6 +41,11 @@ function deleteTask(index) {
 
 function updateList(index, list) {
   const dadosTask = readList();
+  list.msg = inputAdd.value;
+  if (editarTask) {
+    editarTask.closest(".li-lista").getElementsByTagName("p")[0].innerHTML = inputAdd.value;
+  }
+  console.log(editarTask);
   dadosTask[index] = list;
   setLocalStorage(dadosTask);
 }
@@ -54,14 +61,23 @@ function creatList(listTask) {
 }
 
 function saveDados() {
+  if (modal.hasAttribute("action") && modal.getAttribute("action") == "editar") {
+    updateList(modal.getAttribute("index"), statusTask);
+    modal.removeAttribute("action");
+    modal.removeAttribute("texto");
+    modal.removeAttribute("index");
+    modal.classList.remove("ativo");
+    updateTabela();
+    return;
+  }
   if (inputAdd.value == "") {
     inputAdd.classList.add("ativo");
     return;
   }
-   statusTask ={
-    msg:inputAdd.value,
-    finaliza:false
-   }
+  statusTask = {
+    msg: inputAdd.value,
+    finaliza: false,
+  };
 
   creatList(statusTask);
   updateTabela();
@@ -99,26 +115,34 @@ function updateTabela() {
   controles.forEach((btn) => {
     btn.addEventListener("click", btnAcation);
   });
-  const finaliza = document.querySelectorAll('.li-lista')
-  finaliza.forEach((item)=>{
-   const btnEditi = item.querySelector('[data-controle]')
-    const valdarTrue =  item.dataset.status == 'true'
-    if(valdarTrue){
-      item.classList.add('finalizado')
-      btnEditi.remove()
+  const finaliza = document.querySelectorAll(".li-lista");
+  finaliza.forEach((item) => {
+    const btnEditi = item.querySelector("[data-controle]");
+    const valdarTrue = item.dataset.status == "true";
+    if (valdarTrue) {
+      item.classList.add("finalizado");
+      btnEditi.remove();
     }
-  })
-
-
+  });
 }
 
-function openModal() {
+function openModal(action, index, textoTaskB) {
+  if (action == "editar") {
+    modal.setAttribute("action", action);
+    modal.setAttribute("index", index);
+    modal.setAttribute("texto", textoTaskB);
+    inputAdd.value = textoTaskB;
+  } else {
+    inputAdd.value = "";
+  }
   modal.classList.add("ativo");
   outsideClick(() => {
     modal.classList.remove("ativo");
+    modal.removeAttribute("action", action);
+    modal.removeAttribute("index", index);
+    modal.removeAttribute("texto", textoTaskB);
   });
   inputAdd.classList.remove("ativo");
-  inputAdd.value = "";
 }
 
 function outsideClick(callback) {
@@ -131,22 +155,20 @@ function outsideClick(callback) {
     }
   }
 }
-function taskFinalizada(e,index,finaliza = true){
-  const currentTask = e.currentTarget.closest('.li-lista')
-  const textoMsg = currentTask.querySelector('p').innerText
-  currentTask.setAttribute('data-status',finaliza)
+function taskFinalizada(e, index, finaliza = true) {
+  const currentTask = e.currentTarget.closest(".li-lista");
+  const btnEditi = currentTask.querySelector("[data-controle]");
+  const textoMsg = currentTask.querySelector("p").innerText;
+  currentTask.setAttribute("data-status", finaliza);
   statusTask = {
-    msg:textoMsg,
-    finaliza
+    msg: textoMsg,
+    finaliza,
+  };
+  updateList(index, statusTask);
+  if (currentTask.getAttribute("data-status") == "true") {
+    currentTask.classList.add("finalizado");
+    btnEditi.remove();
   }
-  updateList(index,statusTask)
-  if(currentTask.getAttribute('data-status') == 'true'){
-    currentTask.classList.add('finalizado')
-  }
-}
-
-function editarTask(){
-  openModal()
 }
 
 function btnAcation(e) {
@@ -155,9 +177,13 @@ function btnAcation(e) {
     deleteTask(index);
     updateTabela();
   } else if (action == "editar") {
-    editarTask()
+    const textoTaskB = e.target
+      .closest(".li-lista")
+      .getElementsByTagName("p")[0].innerHTML;
+    // editarTask = e.target
+    openModal(action, index, textoTaskB);
   } else {
-    taskFinalizada(e,index)
+    taskFinalizada(e, index);
   }
 }
 
