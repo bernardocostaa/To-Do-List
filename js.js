@@ -118,9 +118,10 @@ function updateTabela() {
   finaliza.forEach((item) => {
     const btnEditi = item.querySelector("[data-controle]");
     const valdarTrue = item.dataset.status == "true";
+    console.log(valdarTrue,item.dataset.status,item);
     if (valdarTrue) {
       item.classList.add("finalizado");
-      btnEditi.remove();
+      btnEditi.remove()
     }
   });
 }
@@ -154,22 +155,28 @@ function outsideClick(callback) {
     }
   }
 }
-function taskFinalizada(e, index, finaliza = true) {
+function taskFinalizada(e, index, finaliza) {
   const currentTask = e.currentTarget.closest(".li-lista");
   const btnEditi = currentTask.querySelector(`[data-controle="editar-${index}"]`);
   const textoMsg = currentTask.querySelector("p").innerText;
   currentTask.setAttribute("data-status", finaliza);
   statusTask = {
     msg: textoMsg,
-    finaliza,
+    finaliza:finaliza,
   };
+  console.log('Barril',statusTask,index,finaliza);
   updateList(index, statusTask);
+  console.log('barril2',statusTask);
   if (currentTask.getAttribute("data-status") == "true") {
     currentTask.classList.add("finalizado");
     if(btnEditi){
       btnEditi.remove();
     }
   }
+  statusTask = {
+    msg: null,
+    finaliza:false,
+  };
 }
 
 function btnAcation(e) {
@@ -184,7 +191,7 @@ function btnAcation(e) {
     // editarTask = e.target
     openModal(action, index, textoTaskB);
   } else {
-    taskFinalizada(e, index);
+    taskFinalizada(e, index,true);
   }
 }
 
