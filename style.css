@@ -210,3 +210,17 @@ body {
   opacity: .5;
   border: none;
 }
+@media(max-width:400px){
+  .foto-perfil{
+    display: none;
+  }
+  .header-to-list{
+    flex-direction: column;
+  }
+  .dia{
+    text-align: center;
+  }
+  .area-data{
+    justify-content: center;
+  }
+}

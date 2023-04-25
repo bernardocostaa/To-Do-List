@@ -185,10 +185,7 @@ function btnAcation(e) {
     deleteTask(index);
     updateTabela();
   } else if (action == "editar") {
-    const textoTaskB = e.target
-      .closest(".li-lista")
-      .getElementsByTagName("p")[0].innerHTML;
-    // editarTask = e.target
+    const textoTaskB = e.target.closest(".li-lista").getElementsByTagName("p")[0].innerHTML;
     openModal(action, index, textoTaskB);
   } else {
     taskFinalizada(e, index,true);
