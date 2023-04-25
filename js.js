@@ -62,6 +62,10 @@ function creatList(listTask) {
 function saveDados() {
   if (modal.hasAttribute("action") && modal.getAttribute("action") == "editar") {
     updateList(modal.getAttribute("index"), statusTask);
+    if(statusTask.msg == ''){
+    inputAdd.classList.add("ativo");
+    return;
+    }
     modal.removeAttribute("action");
     modal.removeAttribute("texto");
     modal.removeAttribute("index");
@@ -118,7 +122,6 @@ function updateTabela() {
   finaliza.forEach((item) => {
     const btnEditi = item.querySelector("[data-controle]");
     const valdarTrue = item.dataset.status == "true";
-    console.log(valdarTrue,item.dataset.status,item);
     if (valdarTrue) {
       item.classList.add("finalizado");
       btnEditi.remove()
